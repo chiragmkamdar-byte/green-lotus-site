@@ -1,0 +1,512 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Green Lotus Spices</title>
+<meta name="description" content="Green Lotus Spices — premium Vietnamese spices, pepper, cassia, star anise, cashews, dried chilli and desiccated coconut, sourced direct from the farm." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  /* Green Lotus Spices — shared stylesheet */
+
+  :root {
+    --green-dark: #1f3d2b;
+  --green: #2f5d3a;
+  --green-light: #4a7c53;
+  --gold: #c9a24a;
+      --cream: #faf6ee;
+      --cream-2: #f1ead9;
+      --text: #26301f;
+  --text-light: #5a6350;
+  --white: #ffffff;
+      --radius: 10px;
+  --shadow: 0 10px 30px rgba(31, 61, 43, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+  color: var(--green-dark);
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.6rem; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.3rem; }
+
+p { margin: 0 0 1em; color: var(--text); }
+
+a { color: var(--green); text-decoration: none; }
+a:hover { color: var(--gold); }
+
+img { max-width: 100%; display: block; }
+
+.container {
+    max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header / Nav */
+header.site-header {
+    background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+.nav-wrap {
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.logo {
+    font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: 0.02em;
+}
+
+nav.main-nav ul {
+    list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+nav.main-nav > ul > li {
+    position: relative;
+}
+
+  nav.main-nav a {
+    color: var(--text);
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+
+nav.main-nav > ul > li > a:hover,
+  nav.main-nav > ul > li.active > a {
+    color: var(--green);
+}
+
+.dropdown-menu {
+    display: none;
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 10px 0;
+  min-width: 200px;
+  list-style: none;
+  margin: 10px 0 0;
+}
+
+nav.main-nav li:hover .dropdown-menu { display: block; }
+
+  .dropdown-menu li a {
+    display: block;
+  padding: 8px 20px;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu li a:hover { background: var(--cream-2); }
+
+.mobile-toggle { display: none; }
+
+  /* Hero */
+  .hero {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--white);
+  padding: 90px 24px;
+  text-align: center;
+}
+
+.hero h1 { color: var(--white); }
+.hero p { color: rgba(255,255,255,0.88); max-width: 600px; margin: 0 auto 1.6em; font-size: 1.1rem; }
+
+.btn {
+    display: inline-block;
+  background: var(--gold);
+  color: var(--green-dark);
+  font-weight: 600;
+  padding: 13px 30px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 162, 74, 0.4);
+  color: var(--green-dark);
+}
+
+.btn-outline {
+    background: transparent;
+  border: 1.5px solid var(--white);
+  color: var(--white);
+}
+
+/* Sections */
+section { padding: 70px 0; }
+
+.section-intro {
+    text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Product grid */
+.grid {
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  }
+
+.card {
+    background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.card:hover { transform: translateY(-4px); }
+
+.card img { width: 100%; height: 220px; object-fit: cover; }
+
+.card-body { padding: 22px 24px 26px; }
+
+.card-body h3 { margin-bottom: 10px; }
+
+.card-body a.card-link {
+    font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--green);
+}
+
+/* Feature strip */
+.features {
+    background: var(--cream-2);
+}
+
+.feature-grid {
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 34px;
+  }
+
+.feature h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.feature p { color: var(--text-light); font-size: 0.95rem; }
+
+/* Story split */
+.split {
+    display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.split img { border-radius: var(--radius); box-shadow: var(--shadow); }
+
+@media (max-width: 800px) {
+  .split { grid-template-columns: 1fr; }
+}
+
+/* Newsletter */
+.newsletter {
+    background: var(--green-dark);
+  color: var(--white);
+  text-align: center;
+}
+
+.newsletter h2 { color: var(--white); }
+
+.newsletter-form {
+    display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 13px 18px;
+  border-radius: 999px;
+  border: none;
+  min-width: 280px;
+  font-size: 0.95rem;
+}
+
+/* Product detail page */
+.product-hero {
+    background: var(--cream-2);
+  padding: 60px 0 40px;
+}
+
+.product-hero .eyebrow { color: var(--green); }
+
+.thumb-row {
+    display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 26px 0 10px;
+}
+
+.thumb-row img {
+    width: 60px;
+  height: 60px;
+  object-fit: contain;
+  background: var(--white);
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.enquiry {
+    background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px;
+  margin-top: 20px;
+}
+
+form .form-row {
+    display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  form .form-row { grid-template-columns: 1fr; }
+}
+
+form label {
+    display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-light);
+}
+
+form input, form select, form textarea {
+    width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #d8d2c2;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--cream);
+}
+
+form textarea { min-height: 110px; resize: vertical; }
+
+.full-row { margin-bottom: 16px; }
+
+/* Contact page */
+.contact-info {
+    text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-info a { font-weight: 600; }
+
+/* Footer */
+footer.site-footer {
+    background: var(--green-dark);
+  color: rgba(255,255,255,0.75);
+  padding: 50px 24px 30px;
+  text-align: center;
+}
+
+footer.site-footer .logo { color: var(--white); margin-bottom: 6px; }
+
+footer.site-footer .contact-line {
+    margin: 14px 0 24px;
+  font-size: 0.95rem;
+}
+
+footer.site-footer .contact-line a { color: var(--gold); }
+
+footer.site-footer .fine-print {
+    font-size: 0.8rem;
+  opacity: 0.6;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 20px;
+}
+
+@media (max-width: 860px) {
+  nav.main-nav { display: none; }
+}
+
+</style>
+  </head>
+  <body>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="logo">Green Lotus Spices</a>
+      <nav class="main-nav">
+        <ul>
+          <li class="active"><a href="index.html">Home</a></li>
+          <li>
+            <a href="our-spices.html">Our Spices</a>
+            <ul class="dropdown-menu">
+              <li><a href="products/black-pepper.html">Black Pepper</a></li>
+              <li><a href="products/white-pepper.html">White Pepper</a></li>
+              <li><a href="products/star-anise.html">Star Anise</a></li>
+              <li><a href="products/cassia.html">Cassia</a></li>
+              <li><a href="products/cashews.html">Cashews</a></li>
+              <li><a href="products/dried-red-chilli.html">Dried Red Chilli</a></li>
+            <li><a href="products/desiccated-coconut.html">Desiccated Coconut</a></li>
+            </ul>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow" style="color:#e9d9ad">Vietnamese Spice Exporter</span>
+    <h1>Season your Day</h1>
+    <p>Discover the finest selection of spices for your business needs.</p>
+      <a href="our-spices.html" class="btn">Discover our range now</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">What we do</span>
+        <h2>Discover Our Spices</h2>
+      <p>Welcome to Green Lotus Spices, where we bring the finest spices and ingredients from the farmers to you.</p>
+      <a href="our-spices.html" class="btn" style="background:var(--green);color:#fff">Explore Now</a>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <img src="https://static.wixstatic.com/media/e0f240_184134852e654cd286b7d54c5cfb0e46~mv2.webp" alt="Star anise bulk buy" />
+          <div class="card-body">
+            <h3>Star Anise</h3>
+            <a class="card-link" href="products/star-anise.html">View product &rarr;</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://static.wixstatic.com/media/e0f240_b14d70807115414db78864f0d3becfb2~mv2.jpg" alt="Cashews bulk buy business" />
+          <div class="card-body">
+            <h3>Cashews</h3>
+            <a class="card-link" href="products/cashews.html">View product &rarr;</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://static.wixstatic.com/media/e0f240_e814670b22d34eb887ba1496e5cfe531~mv2.jpg" alt="Black pepper bulk buy" />
+          <div class="card-body">
+            <h3>Black Pepper</h3>
+            <a class="card-link" href="products/black-pepper.html">View product &rarr;</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://static.wixstatic.com/media/e0f240_2d222178dc0a4dbe94905ea14803768a~mv2.webp" alt="Ground dried chilli bulk buy" />
+          <div class="card-body">
+            <h3>Dried Chilli</h3>
+            <a class="card-link" href="products/dried-red-chilli.html">View product &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature">
+          <h3>Sustainable</h3>
+          <p>Committed to sustainability through our partnerships with farmers. By promoting eco-friendly practices, we source quality products and support community well-being.</p>
+        </div>
+        <div class="feature">
+          <h3>Qualified Team</h3>
+          <p>Our qualified team delivers exceptional service and tailored solutions. We ensure you feel valued and achieve your goals.</p>
+      </div>
+      <div class="feature">
+          <h3>Certifications</h3>
+          <p>We hold certifications for global sales, ensuring compliance and quality. This builds trust and allows us to serve a diverse market effectively.</p>
+        </div>
+        <div class="feature">
+          <h3>Premium Quality</h3>
+          <p>We pride ourselves on quality and can source any quantity you need. Trust us for the best tailored to your requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Our Story</span>
+        <h2>Our Spice Story</h2>
+      <p>Green Lotus Spices brings the essence of Vietnam to your kitchen. We are dedicated to providing high-quality spices to enhance your culinary experience. Through our commitment to excellence, we aim to serve the best flavors to you.</p>
+      <a href="about-us.html" class="btn" style="background:var(--green);color:#fff">Learn More</a>
+      </div>
+      <img src="https://static.wixstatic.com/media/e0f240_0910df0464c94b6dbb21fdf9fcbd0a9b~mv2.jpg" alt="Vietnamese pepper farm" />
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <h2>Subscribe to get an exclusive weekly market report</h2>
+      <form class="newsletter-form" action="mailto:sales@greenlotusvn.com" method="post" enctype="text/plain">
+        <input type="email" name="email" placeholder="Email" required />
+        <button type="submit" class="btn">Join Our Mailing List</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo">Green Lotus Spices</div>
+  <div class="contact-line">Contact Us Today &mdash; <a href="mailto:sales@greenlotusvn.com">sales@greenlotusvn.com</a></div>
+    <div class="fine-print">&copy; 2026 Green Lotus Spices. All rights reserved.</div>
+</footer>
+
+</body>
+  </html>
+  
