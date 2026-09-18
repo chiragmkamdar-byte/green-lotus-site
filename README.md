@@ -38,26 +38,22 @@ img/logo-data.js     the logo as a data URI
 
 ## Before this goes live
 
-**1. Fill in the placeholders.** Anything the site does not yet know renders as
-a highlighted `[bracket]`. Find them all with:
-
-```
-grep -c 'class="todo"' *.html products/*.html
-```
-
-They are all defined in one place — the `F = { ... }` dictionary near the top of
-`tools/build.py`. Replace each `todo("...")` with the real value and rebuild.
-
-**2. Check every specification figure.** The tables in `tools/products.py` are
+**1. Check every specification figure.** The tables in `tools/products.py` are
 standard Vietnamese export grades taken from common trade practice, **not Green
 Lotus lab data**. A published specification is a commitment to the buyer, so
 check each figure against your own certificates of analysis before merging.
 
-**3. Wire up the forms.** The old forms posted to `mailto:`, which most browsers
+**2. Wire up the forms.** The old forms posted to `mailto:`, which most browsers
 ignore and phones drop entirely — enquiries were being lost. Create a free
 endpoint at [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com)
 and paste the URL into `window.GL_FORM_ENDPOINT` at the top of `assets/site.js`.
 Until you do, the forms fall back to opening a mail client, exactly as before.
+
+**3. Company facts.** Everything the site states about the company lives in the
+`F` dictionary at the top of `tools/build.py`. Registered numbers, addresses,
+volumes, MOQ, Incoterms, packing weights and certifications are deliberately not
+published yet — add them there and rebuild when you want them on the site.
+`REVIEW.md` lists what is being held back.
 
 **4. Redirect the bare domain.** The site answers on both `greenlotusvn.com` and
 `www.greenlotusvn.com`. Pick one as canonical and 301 the other in Vercel
