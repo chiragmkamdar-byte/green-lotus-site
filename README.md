@@ -1,45 +1,80 @@
-# Green Lotus Spices — static site
+# Green Lotus Spices — greenlotusvn.com
 
-A plain HTML/CSS rebuild of greenlotusvn.com (originally a Wix site), ready to deploy on Vercel.
+A plain HTML/CSS static site deployed on Vercel. No framework, no dependencies.
 
-## What's here
+## How the site is built
 
-- `index.html` — Home
-- `our-spices.html` — Product overview
-- `products/*.html` — 7 individual product pages (Black Pepper, White Pepper, Star Anise, Cassia, Cashews, Dried Red Chilli, Desiccated Coconut)
-- `about-us.html`, `contact-us.html`
-- `vercel.json` — caching config (optional, safe to delete)
+Every `.html` file is **generated** by `tools/build.py`. Edit the content in
+`tools/build.py` (page copy) or `tools/products.py` (product data and
+specification tables), then run:
 
-No build step, no dependencies — it's static HTML that Vercel serves as-is. All CSS is inlined directly in each page.
-
-## Deploy to Vercel
-
-**Option A — Vercel dashboard (no CLI needed)**
-1. This repo is already on GitHub.
-2. Go to vercel.com → **Add New... → Project**.
-3. Import this repo (chiragmkamdar-byte/green-lotus-site).
-4. Framework preset: **Other** (it's plain static HTML — no build command, no output directory needed).
-5. Click **Deploy**.
-
-**Option B — Vercel CLI**
 ```
-npm install -g vercel
-git clone https://github.com/chiragmkamdar-byte/green-lotus-site.git
-cd green-lotus-site
-vercel        # deploy a preview
-vercel --prod # deploy to production
+python3 tools/build.py
 ```
 
-## Connect your domain
+and commit the regenerated files. Editing the `.html` files by hand works, but
+the next build overwrites those edits — so change the source, not the output.
 
-Once deployed, in the Vercel project go to **Settings → Domains** and add `greenlotusvn.com` and `www.greenlotusvn.com`. Vercel will give you DNS records (usually an A record or CNAME) to add wherever the domain is currently registered/managed. Once DNS propagates, Vercel issues an SSL certificate automatically.
+```
+tools/build.py       page templates, shared header/footer, site copy
+tools/products.py    the seven products: grades, specs, photography, SEO
+assets/site.css      all styling (previously duplicated inline in 11 pages)
+assets/site.js       navigation, logo, form submission
+img/logo-data.js     the logo as a data URI
+```
 
-Note: your domain is likely still pointed at Wix's nameservers/DNS today. You'll need access to wherever the domain itself is registered (not just the Wix site editor) to repoint it.
+## Pages
 
-## About the contact/enquiry forms
+| File | Purpose |
+| --- | --- |
+| `index.html` | Home |
+| `our-spices.html` | Product range |
+| `products/*.html` | Seven product pages with full specification tables |
+| `certifications.html` | Certifications, testing and export documents |
+| `packaging-shipping.html` | Packing, container quantities, Incoterms, transit |
+| `about-us.html` | Company, numbers, sourcing, team |
+| `contact-us.html` | Contact details and the enquiry form |
+| `sitemap.xml`, `robots.txt` | Generated for search engines |
 
-The original Wix forms submitted to Wix's own backend. Since this is now static hosting, the forms here are wired to `mailto:` links as a simple fallback — clicking Submit will open the visitor's email client instead of silently posting data. For real inline form handling (submissions land in your inbox or a spreadsheet without opening email), wire the `<form>` `action` in each page to a service like Formspree, Getform, or a small Vercel serverless function.
+## Before this goes live
+
+**1. Fill in the placeholders.** Anything the site does not yet know renders as
+a highlighted `[bracket]`. Find them all with:
+
+```
+grep -c 'class="todo"' *.html products/*.html
+```
+
+They are all defined in one place — the `F = { ... }` dictionary near the top of
+`tools/build.py`. Replace each `todo("...")` with the real value and rebuild.
+
+**2. Check every specification figure.** The tables in `tools/products.py` are
+standard Vietnamese export grades taken from common trade practice, **not Green
+Lotus lab data**. A published specification is a commitment to the buyer, so
+check each figure against your own certificates of analysis before merging.
+
+**3. Wire up the forms.** The old forms posted to `mailto:`, which most browsers
+ignore and phones drop entirely — enquiries were being lost. Create a free
+endpoint at [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com)
+and paste the URL into `window.GL_FORM_ENDPOINT` at the top of `assets/site.js`.
+Until you do, the forms fall back to opening a mail client, exactly as before.
+
+**4. Redirect the bare domain.** The site answers on both `greenlotusvn.com` and
+`www.greenlotusvn.com`. Pick one as canonical and 301 the other in Vercel
+(Settings → Domains), or Google splits the ranking between two copies of every
+page. The `<link rel="canonical">` tags currently point at the `www` version.
+
+## Deploy
+
+Vercel builds from this repo automatically on push to `main`. For a preview,
+push a branch and open a pull request — Vercel comments with a preview URL.
 
 ## Images
 
-Images are currently referenced directly from Wix's media CDN (`static.wixstatic.com`) so nothing had to be re-uploaded. These URLs are stable, but if you ever want full independence from Wix, download the images and swap the `src` paths to local files (e.g. `/img/black-pepper.jpg`).
+Images are still served from Wix's media CDN (`static.wixstatic.com`), left over
+from the original site. They work, but for independence from Wix, download them
+into `img/` and update the URLs in `tools/products.py`.
+
+Worth replacing eventually with your own photography: the warehouse, the
+processing line, staff at work, containers loading. Stock farm imagery does
+nothing for an importer; a photo of your actual facility does.
