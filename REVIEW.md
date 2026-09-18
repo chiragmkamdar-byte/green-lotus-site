@@ -1,49 +1,57 @@
-# Placeholders to fill before merging
+# Before this goes live
 
-Each one is defined in the `F = {...}` dictionary in `tools/build.py`.
-Replace the `todo("...")` call with the real value, then run `python3 tools/build.py`.
+No placeholders remain on any page. Two things still need a decision.
 
-| Placeholder | Appears |
+## 1. Check the specification figures
+
+The tables in `tools/products.py` are standard Vietnamese export grades taken
+from common trade practice — **not Green Lotus lab data**. A published
+specification is a commitment to the buyer, so check each figure against your
+own certificates of analysis. A buyer who receives 12.8% moisture against a
+12.5% claim on your website has a claim against you.
+
+Also confirm the growing regions written into the sourcing copy match where you
+actually buy:
+
+| Product | Regions stated |
 | --- | --- |
-| [X] | 41× |
-| [+84 phone number] | 27× |
-| [office address, Ho Chi Minh City, Vietnam] | 14× |
-| [business registration number] | 14× |
-| [Cat Lai / Cai Mep / Hai Phong] | 10× |
-| [t] | 10× |
-| [one 20ft container / X tonnes] | 9× |
-| [25 / 50 kg] | 9× |
-| [FOB, CIF, CFR, EXW] | 8× |
-| [Dak Lak, Gia Lai, Binh Phuoc — confirm] | 5× |
-| [your certifications] | 4× |
-| [number] | 4× |
-| [ASTA] | 4× |
-| [SHU] | 4× |
-| [lab name] | 3× |
-| [name, title, direct email] | 3× |
-| [what it covers and which facility it applies to] | 3× |
-| [date] | 3× |
-| [list your main export markets] | 2× |
-| [city] | 2× |
-| [year] | 2× |
-| [11.34 kg / 22.68 kg vacuum tins — confirm] | 2× |
-| [mesh] | 2× |
-| [X cm] | 2× |
-| [X tonnes] | 1× |
-| [e.g. 30% T/T deposit, balance against copy B/L, or irrevocable L/C at sight] | 1× |
-| [full registered company name] | 1× |
-| [tax code] | 1× |
-| [warehouse / processing facility address] | 1× |
-| [WhatsApp number] | 1× |
-| [Zalo number] | 1× |
-| [Certification name, e.g. ISO 22000] | 1× |
-| [Certification name, e.g. HACCP] | 1× |
-| [Certification name, e.g. FDA registration] | 1× |
-| [Binh Phuoc, Dong Nai — confirm] | 1× |
-| [growing provinces] | 1× |
-| [Lang Son, Cao Bang — confirm] | 1× |
-| [Yen Bai, Lao Cai, Quang Nam — confirm] | 1× |
-| [X]% | 1× |
-| [Ben Tre — confirm] | 1× |
+| Black and white pepper | Dak Lak, Gia Lai, Dong Nai, Binh Phuoc |
+| Cassia | Yen Bai, Quang Nam, Thanh Hoa |
+| Star anise | Lang Son, Cao Bang |
+| Cashews | Binh Phuoc, Dong Nai |
+| Dried chilli | Mekong Delta, central coast |
+| Desiccated coconut | Ben Tre, Tra Vinh |
 
-Total: 203 placeholders across 40 distinct facts.
+## 2. Wire up the enquiry forms
+
+The forms currently fall back to opening the visitor's mail client, which is
+what the old site did and why enquiries were being lost. Create a free endpoint
+at [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) and
+paste the URL into `window.GL_FORM_ENDPOINT` at the top of `assets/site.js`.
+
+## Held back deliberately
+
+These are not on the site because you asked to leave them off. Each is defined
+in the `F` dictionary in `tools/build.py` — add a value there and rebuild when
+you want it published.
+
+- Business registration number and tax code
+- Office and warehouse addresses
+- Annual volume, containers per year, headcount, warehouse capacity
+- Minimum order quantity, lead time, port of loading, Incoterms
+- Packing weights and container quantities
+- Certifications, and the name of your testing laboratory
+- Named contacts for sales, documentation and management
+
+The two that cost you most enquiries are the **address** and the
+**certifications** — they are the first things an importer's procurement team
+looks for before they will open an account.
+
+## Also worth doing
+
+- Redirect `greenlotusvn.com` to `www.greenlotusvn.com` (or the reverse) in
+  Vercel, so Google stops splitting the ranking between two copies of the site.
+- Replace the stock farm photography with your own warehouse, processing line
+  and loading photos.
+- Publish the weekly market report — it is the strongest SEO asset you have and
+  it is currently invisible to Google.
