@@ -61,8 +61,8 @@
 <section class="product-hero">
   <div class="container section-intro">
     <span class="eyebrow">Get in touch</span>
-    <h1>Contact Green Lotus</h1>
-    <p>Send us your specification and volume and we will come back with a quote, samples and documentation within one business day.</p>
+    <h1>Contact Us</h1>
+    <p>Enquire below for the products you require and we will get back to you within one business day.</p>
   </div>
 </section>
 
@@ -98,7 +98,7 @@
   <div class="container" style="max-width:820px">
 <form class="enquiry" id="enquiry" data-subject="Website enquiry" action="mailto:sales@greenlotusvn.com" method="post" enctype="text/plain">
       <h3>Request a quote</h3>
-      <p class="lead-in">Tell us the grade, the volume and where it is going. We come back with a price, a specification sheet and samples within one business day.</p>
+      <p class="lead-in">Tell us what you need and we will come back with a price, a specification sheet and samples within one business day.</p>
       <div class="form-row">
         <div><label for="q-name">Name</label><input type="text" id="q-name" name="Name" required /></div>
         <div><label for="q-company">Company</label><input type="text" id="q-company" name="Company" required /></div>
@@ -123,27 +123,9 @@
         </div>
         <div><label for="q-grade">Grade or specification</label><input type="text" id="q-grade" name="Grade" placeholder="e.g. ASTA 570 g/l" /></div>
       </div>
-      <div class="form-row">
-        <div><label for="q-qty">Quantity</label><input type="text" id="q-qty" name="Quantity" placeholder="tonnes or containers" required /></div>
-        <div><label for="q-port">Destination port</label><input type="text" id="q-port" name="Destination port" required /></div>
-      </div>
-      <div class="form-row">
-        <div>
-          <label for="q-incoterm">Incoterm</label>
-          <select id="q-incoterm" name="Incoterm">
-            <option value="">Choose an option</option>
-            <option>FOB</option>
-            <option>CIF</option>
-            <option>CFR</option>
-            <option>EXW</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div><label for="q-when">Target shipment month</label><input type="text" id="q-when" name="Target shipment" placeholder="e.g. November 2026" /></div>
-      </div>
       <div class="full-row">
         <label for="q-notes">Notes</label>
-        <textarea id="q-notes" name="Notes" placeholder="Packing preference, certification requirements, anything else we should know"></textarea>
+        <textarea id="q-notes" name="Notes" placeholder="Volume, destination, packing preference, certification requirements — anything that helps us quote"></textarea>
       </div>
       <button type="submit" class="btn" style="background:var(--green);color:#fff">Send enquiry</button>
       <p class="form-note">We reply to every enquiry within one business day. Your details are used to quote your requirement and nothing else.</p>
@@ -154,9 +136,13 @@
 
 <section class="cta-band">
   <div class="container">
-    <h2>Not ready to quote yet?</h2>
+    <h2>Not ready for a quote yet?</h2>
     <p>Subscribe to our weekly Vietnam spice market report for farm-gate and FOB prices, harvest conditions and freight rates.</p>
-    <a href="contact-us.html" class="btn">Request a quote</a>
+    <form class="newsletter-form" data-subject="Market report subscription" action="mailto:sales@greenlotusvn.com" method="post" enctype="text/plain">
+      <input type="email" name="Email" placeholder="Your work email" required aria-label="Email address" />
+      <button type="submit" class="btn">Subscribe</button>
+      <div class="form-status" role="status"></div>
+    </form>
   </div>
 </section>
 
