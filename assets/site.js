@@ -41,6 +41,24 @@ window.GL_FALLBACK_EMAIL = "sales@greenlotusvn.com";
     });
   }
 
+  /* Desktop dropdown: hold it open briefly after the cursor leaves, so a
+     slow or diagonal move down to a product does not lose the menu. */
+  function wireDropdowns() {
+    if (!window.matchMedia || !window.matchMedia("(min-width: 861px)").matches) return;
+    document.querySelectorAll("nav.main-nav > ul > li").forEach(function (li) {
+      if (!li.querySelector(".dropdown-menu")) return;
+      var timer = null;
+      li.addEventListener("mouseenter", function () {
+        clearTimeout(timer);
+        li.classList.add("nav-open");
+      });
+      li.addEventListener("mouseleave", function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () { li.classList.remove("nav-open"); }, 400);
+      });
+    });
+  }
+
   /* Enquiry forms */
   function wireForms() {
     document.querySelectorAll("form.enquiry, form.newsletter-form").forEach(function (form) {
@@ -108,11 +126,13 @@ window.GL_FALLBACK_EMAIL = "sales@greenlotusvn.com";
     document.addEventListener("DOMContentLoaded", function () {
       paintLogos();
       wireNav();
+      wireDropdowns();
       wireForms();
     });
   } else {
     paintLogos();
     wireNav();
+    wireDropdowns();
     wireForms();
   }
 })();

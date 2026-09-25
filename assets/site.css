@@ -187,7 +187,7 @@ nav.main-nav li:hover .dropdown-menu { display: block; }
 .hero {
   position: relative;
   background: linear-gradient(160deg, rgba(13,61,32,0.92), rgba(17,100,51,0.86)),
-              url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;
+              url('https://images.unsplash.com/photo-1635355995448-77b02d33621d?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;
   color: var(--white);
   padding: 160px 24px;
   text-align: center;
@@ -869,3 +869,88 @@ footer.site-footer .fine-print {
 }
 
 .newsletter-form .form-status { flex: 1 1 100%; text-align: left; }
+
+/* Dropdown hover bridge — the 18px gap between the nav item and the menu
+   used to drop hover before the cursor reached the menu, so the menu
+   vanished on the way down. This invisible strip spans the gap. */
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
+nav.main-nav > ul > li:hover > a { color: var(--green-bright); }
+
+@media (max-width: 860px) {
+  .dropdown-menu::before { display: none; }
+}
+
+/* Keep the dropdown open briefly after the cursor leaves, so a slow or
+   diagonal move from the nav item to a product does not close it. The
+   .nav-open class is applied by assets/site.js. */
+nav.main-nav > ul > li.nav-open > .dropdown-menu { display: block; }
+nav.main-nav > ul > li.nav-open > a { color: var(--green-bright); }
+
+/* Product forms — description left, photograph right */
+.form-row-block {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 52px;
+  align-items: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+}
+
+.form-row-block:first-of-type { border-top: none; padding-top: 8px; }
+
+.form-row-block h3 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+.form-row-block p { margin-bottom: 12px; }
+
+.form-row-block .best-for {
+  font-size: 0.86rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.form-row-block figure {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.form-row-block figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.form-row-block figcaption {
+  margin-top: 12px;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (max-width: 820px) {
+  .form-row-block {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .form-row-block figure { max-width: 320px; }
+}
+
+.form-row-block.no-photo { grid-template-columns: 1fr; }
+.form-row-block.no-photo > div { max-width: 780px; }
