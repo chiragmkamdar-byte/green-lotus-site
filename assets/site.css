@@ -11,6 +11,10 @@
   --line: #e3e1d8;
   --paper: #fefdfb;
   --white: #ffffff;
+  --accent: #a85f0f;        /* white text on this passes AA at button sizes */
+  --accent-dark: #8a4c0a;
+  --accent-label: #9c570c;  /* small uppercase labels on light backgrounds */
+  --accent-light: #f0c489;  /* decorative, only ever on the dark green */
   --radius: 3px;
 }
 
@@ -37,7 +41,7 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 600; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 600; line-height: 1.04; letter-spacing: -0.02em; }
 h2 { font-size: clamp(1.7rem, 3vw, 2.25rem); }
 h3 { font-size: 1.15rem; font-weight: 600; }
 
@@ -103,7 +107,7 @@ nav.main-nav a {
 
 nav.main-nav > ul > li > a:hover,
 nav.main-nav > ul > li.active > a {
-  color: var(--green-bright);
+  color: var(--green);
 }
 
 .dropdown-menu {
@@ -186,15 +190,34 @@ nav.main-nav li:hover .dropdown-menu { display: block; }
 /* Hero */
 .hero {
   position: relative;
-  background: linear-gradient(160deg, rgba(13,61,32,0.92), rgba(17,100,51,0.86)),
+  background: linear-gradient(95deg, rgba(10,45,24,0.88) 0%, rgba(10,45,24,0.66) 45%, rgba(10,45,24,0.30) 100%),
               url('https://images.unsplash.com/photo-1635355995448-77b02d33621d?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;
   color: var(--white);
-  padding: 160px 24px;
-  text-align: center;
+  padding: 150px 24px 140px;
+  text-align: left;
 }
 
 .hero h1 { color: var(--white); }
-.hero p { color: rgba(255,255,255,0.85); max-width: 560px; margin: 0 auto 2em; font-size: 1.1rem; }
+.hero p {
+  color: rgba(255,255,255,0.92);
+  max-width: 620px;
+  margin: 0 0 2.2em;
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.hero .eyebrow { color: var(--accent-light); }
+
+.btn-accent { background: var(--accent); }
+.btn-accent:hover { background: var(--accent-dark); color: var(--white); }
+
+.card-link { color: var(--green); }
+
+
+@media (max-width: 640px) {
+  .hero { padding: 100px 20px 90px; }
+  .hero h1 br { display: none; }
+}
 
 /* Sections */
 section { padding: 100px 0; }
@@ -210,7 +233,7 @@ section { padding: 100px 0; }
   letter-spacing: 0.16em;
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--green-bright);
+  color: var(--accent-label);
   margin-bottom: 14px;
   display: block;
 }
@@ -271,7 +294,12 @@ section { padding: 100px 0; }
   align-items: center;
 }
 
-.split img { border-radius: var(--radius); }
+.split img {
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
 
 @media (max-width: 800px) {
   .split { grid-template-columns: 1fr; }
@@ -312,7 +340,7 @@ section { padding: 100px 0; }
   padding: 72px 0 48px;
 }
 
-.product-hero .eyebrow { color: var(--green); }
+.product-hero .eyebrow { color: var(--accent-label); }
 
 .thumb-row {
   display: flex;
@@ -482,18 +510,25 @@ footer.site-footer .fine-print {
 }
 
 .utility-bar a { color: var(--white); }
-.utility-bar a:hover { color: #bfe6c8; }
+.utility-bar a:hover { color: var(--accent-light); }
 .utility-bar .sep { opacity: 0.35; margin: 0 10px; }
 
+.util-short { display: none; }
+
 @media (max-width: 640px) {
-  .utility-bar .inner { justify-content: center; padding: 8px 20px; text-align: center; }
-  .utility-bar .util-left { width: 100%; }
+  /* One row only: the tagline gives way to the phone and email, which are
+     the useful part on a phone. */
+  .utility-bar { font-size: 0.72rem; }
+  .utility-bar .inner { justify-content: center; padding: 7px 14px; flex-wrap: nowrap; }
+  .utility-bar .util-left { display: none; }
+  .utility-bar .util-right { white-space: nowrap; }
+  .utility-bar .sep { margin: 0 7px; }
 }
 
 /* Header quote button */
 .nav-cta {
   display: inline-block;
-  background: var(--green);
+  background: var(--accent);
   color: var(--white);
   font-weight: 600;
   font-size: 0.74rem;
@@ -504,7 +539,7 @@ footer.site-footer .fine-print {
   white-space: nowrap;
 }
 
-.nav-cta:hover { background: var(--green-dark); color: var(--white); }
+.nav-cta:hover { background: var(--accent-dark); color: var(--white); }
 
 .nav-right { display: flex; align-items: center; gap: 18px; }
 
@@ -702,8 +737,10 @@ table.spec td:first-child { font-weight: 600; color: var(--green-dark); }
 
 .cta-band h2 { color: var(--white); }
 .cta-band p { color: rgba(255,255,255,0.78); max-width: 620px; margin: 0 auto 28px; }
-.cta-band .btn { background: var(--green-bright); }
+.cta-band .btn { background: var(--accent); }
 .cta-band .btn:hover { background: var(--white); color: var(--green-dark); }
+.newsletter-form .btn { background: var(--accent); }
+.newsletter-form .btn:hover { background: var(--accent-dark); }
 
 /* Certification cards */
 .cert-grid {
@@ -765,7 +802,7 @@ table.facts td { color: var(--green-dark); font-weight: 600; }
   margin-bottom: 48px;
 }
 
-.contact-block h3 {
+.contact-block h2 {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -816,7 +853,7 @@ footer.site-footer { text-align: left; padding: 68px 24px 30px; }
   gap: 44px;
 }
 
-.footer-grid h4 {
+.footer-grid .footer-head {
   color: var(--white);
   font-family: 'Inter', sans-serif;
   font-size: 0.76rem;
@@ -882,7 +919,7 @@ footer.site-footer .fine-print {
   height: 20px;
 }
 
-nav.main-nav > ul > li:hover > a { color: var(--green-bright); }
+nav.main-nav > ul > li:hover > a { color: var(--green); }
 
 @media (max-width: 860px) {
   .dropdown-menu::before { display: none; }
@@ -892,7 +929,7 @@ nav.main-nav > ul > li:hover > a { color: var(--green-bright); }
    diagonal move from the nav item to a product does not close it. The
    .nav-open class is applied by assets/site.js. */
 nav.main-nav > ul > li.nav-open > .dropdown-menu { display: block; }
-nav.main-nav > ul > li.nav-open > a { color: var(--green-bright); }
+nav.main-nav > ul > li.nav-open > a { color: var(--green); }
 
 /* Product forms — description left, photograph right */
 .form-row-block {
@@ -954,3 +991,62 @@ nav.main-nav > ul > li.nav-open > a { color: var(--green-bright); }
 
 .form-row-block.no-photo { grid-template-columns: 1fr; }
 .form-row-block.no-photo > div { max-width: 780px; }
+
+/* Keyboard access — a visible focus ring and a skip link, neither of which
+   the site had. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--white);
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius) 0;
+}
+
+.skip-link:focus {
+  left: 0;
+  color: var(--white);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.skip-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hero a:focus-visible,
+.cta-band a:focus-visible,
+.newsletter a:focus-visible,
+footer a:focus-visible {
+  outline-color: #f0c489;
+}
+
+/* Tap targets — WCAG 2.5.8 wants 24px minimum, and several link rows were
+   15 to 17px tall. Padding only; nothing moves visually. */
+.utility-bar a,
+.breadcrumb a,
+.card-link,
+.footer-grid a,
+.contact-block a,
+.related a strong {
+  display: inline-block;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+nav.main-nav > ul > li > a {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+@media (max-width: 860px) {
+  nav.main-nav > ul > li > a { padding: 14px 32px; }
+}
