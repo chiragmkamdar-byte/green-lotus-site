@@ -101,7 +101,7 @@ window.GL_FALLBACK_EMAIL = "sales@greenlotusvn.com";
             if (status) {
               status.className = "form-status ok";
               status.textContent =
-                "Thank you — your enquiry has reached our sales team. We reply to quote requests within one business day.";
+                "Thank you — your enquiry has reached our sales team and we will be in touch.";
             }
           })
           .catch(function () {
